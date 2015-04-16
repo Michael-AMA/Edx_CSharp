@@ -8,38 +8,42 @@ namespace CSharp
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            string first;
-            string last;
-            string birthdate;
-            GetStudentInfo(out first, out last, out birthdate);
-            PrintStudentDetails(first, last, birthdate);
-
+            GetStudentInfo();
+            try
+            {
+                ValidateStudentInfo();
+            }
+            catch(NotImplementedException notImp)
+            {
+                Console.WriteLine(notImp.Message);
+            }
+        }
+        // Get the students inforamtion
+        static void GetStudentInfo()
+        {
+            Console.WriteLine("First Name: ");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Last Name:");
+            string lastName  = Console.ReadLine();
+            Console.WriteLine("Birthday: ");
+            string birthday = Console.ReadLine();
             string teacher;
             string course;
             string program;
             string degree;
-            GetSchoolDetails(out teacher, out course, out program, out degree);
-            PrintSchoolDetails(teacher, course, program, degree);
-        }
-        // Ask user for student information
-        static void GetStudentInfo(out string first, out string last, out string birthdate)
-        {
-            Console.WriteLine("First name: ");
-            first = Console.ReadLine();
-            Console.WriteLine("Last Name: ");
-            last = Console.ReadLine();
-            Console.WriteLine("Birthdate(optional): ");
-            birthdate = Console.ReadLine();
+            GetSchoolInfo(out teacher, out course, out program, out degree);
+            PrintStudentInfo(firstName, lastName, birthday, teacher, course, program, degree);
 
-           
         }
-        // Ask for school details
-        static void GetSchoolDetails(out string teacher, out string course, out string program, out string degree)
+
+        // Get School information
+        static void GetSchoolInfo(out string teacher, out string course, out string program, out string degree)
         {
             Console.WriteLine("Teacher: ");
-            teacher = Console.ReadLine();
+           teacher = Console.ReadLine();
             Console.WriteLine("Course: ");
             course = Console.ReadLine();
             Console.WriteLine("Program: ");
@@ -47,19 +51,21 @@ namespace CSharp
             Console.WriteLine("Degree: ");
             degree = Console.ReadLine();
         }
-        // Displays to screen the students information
-        static void PrintStudentDetails(string first, string last, string birthday)
-        {
-            if (birthday == "")
-                Console.WriteLine("Hello, {0} {1}.", first, last);
-            else
-                Console.WriteLine("Hello, {0} {1}.  Your bithday is {2}", first, last, birthday);
-        }
-        // Display to screen the school details
-        static void PrintSchoolDetails(string teacher, string course, string program, string degree)
-        {
-            Console.WriteLine("Teacher: {0}\nCourse: {1}\n Program: {2}\n Degree: {3}\n", teacher, course, program, degree);
-        }
 
+        // Print to the screen ALL student information
+        static void PrintStudentInfo(string first, string last, string birthday, string teacher, string course, string program, string degree)
+        {
+            Console.WriteLine("Name: {0} {1}", first, last);
+            Console.WriteLine("Birthdate: {0}", birthday);
+            Console.WriteLine("Teacher: {0}", teacher);
+            Console.WriteLine("Course: {0}", course);
+            Console.WriteLine("Program: {0}", program);
+            Console.WriteLine("Degree: {0}", degree);
+        }
+        
+        static void ValidateStudentInfo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
