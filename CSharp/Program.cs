@@ -13,7 +13,7 @@ namespace CSharp
            
             PrintHello("Michael");
         }
-    // testing git
+    // haha fuck off dudte git
         static void PrintHello(string name)
         {
             Console.WriteLine("Hello, {0}", name);
